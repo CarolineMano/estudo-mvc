@@ -1,0 +1,30 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1>Manodemy</h1>
+            <p>The newest MOOC plataform</p>
+        </div>
+    </div>
+
+    <p>Please use the navigation bar above to browse through our website</p>
+    @if(SignInManager.IsSignedIn(User))
+    {
+        if(User.FindFirst("UserRole").Value == "student")
+        {
+            <p>If you want to add your course to our catalog, please register as a faculty member!</p>
+        }
+    }
+    else
+    {
+        <p>If you want to add your course to our catalog, please register as a faculty member!</p>
+    }
+    
+    
+</div>

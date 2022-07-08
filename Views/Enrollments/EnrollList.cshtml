@@ -1,0 +1,31 @@
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@model IEnumerable<ESTUDO.MVC.Models.Course>
+
+<h3 align="center">Those are the courses you are currently enrolled in</h3>
+
+<table>
+    <tr>
+        <th>Course Name</th>
+        <th>Course Load</th>
+        <th>Price $</th>
+        <th>Action</th>      
+    </tr>
+
+    @foreach (var course in Model)
+    {
+        <tr>
+            <td>@course.Name</td>
+            <td>@course.CourseLoad</td>
+            <td>@course.Price</td>
+            <td>
+                <a href="/Enrollments/Unenroll/@course.Id">Unenroll</a>
+            </td>            
+        </tr>
+    }
+        
+</table>
+
+

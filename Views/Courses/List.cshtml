@@ -1,0 +1,45 @@
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@model IEnumerable<ESTUDO.MVC.Models.Course>
+
+<table>
+    <tr>
+        <th>Course Name</th>
+        <th>Course Load</th>
+        <th>Price $</th>
+        @if(SignInManager.IsSignedIn(User))
+        {
+            <th>Actions</th>
+        }
+        
+    </tr>
+
+    @foreach (var course in Model)
+    {
+        <tr>
+            <td>@course.Name</td>
+            <td>@course.CourseLoad</td>
+            <td>@course.Price</td>
+            @if(SignInManager.IsSignedIn(User))
+            {
+                if(User.FindFirst("UserRole").Value == "faculty")
+                {
+                    <td>
+                        <a href="/Courses/Edit/@course.Id">Edit</a>
+                        <a href="/Courses/Delete/@course.Id">Delete</a>
+                    </td>
+                }
+                else if(User.FindFirst("UserRole").Value == "student")
+                {   
+                    <td>
+                        <a href="/Enrollments/Enroll/@course.Id">Enroll</a>
+                    </td>
+                    
+                }
+            }
+            
+        </tr>
+    }
+</table>

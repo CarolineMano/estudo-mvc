@@ -1,0 +1,13 @@
+@model ESTUDO.MVC.Models.Course
+<h2>Add new Course</h2>
+
+<form class="form-horizontal" asp-controller="Courses" asp-action="Save" method="POST">
+    <input type="hidden" asp-for="Id">
+    <p>Course Name:</p>
+    <input type="text" class="form-control" asp-for="Name" placeholder="Name">
+    <p>Course Load:</p>
+    <input type="number" class="form-control" asp-for="CourseLoad" placeholder="Course Load">
+    <p>Price:</p>
+    <input type="text" class="form-control" asp-for="Price" placeholder="$">
+    <button class="btn btn-success">Add</button>
+</form>

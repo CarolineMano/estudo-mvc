@@ -1,0 +1,6 @@
+Debug/
+bin/
+obj/
+/build/
+*.dll
+*.editorconfig
